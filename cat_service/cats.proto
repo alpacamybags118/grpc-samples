@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+service CatService {
+    rpc GetCats(Empty) returns (CatList);
+    rpc GetCat(GetCatRequest) returns (Cat);
+    rpc AddCat(AddCatRequest) returns (Empty);
+}
+
+message Empty {}
+
+message CatList {
+    repeated Cat cats = 1;
+}
+
+message GetCatRequest {
+    string name = 1;
+}
+
+message Cat {
+    int32 id = 1;
+    string name = 2;
+    string type = 3;
+}
+
+message AddCatRequest {
+    string name = 1;
+    string type = 2;
+}

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+service ChatService {
+    rpc ChatStream(stream ChatMessage) returns (stream ChatMessage) {}
+    rpc StartChatRoom(ChatRoomRequest) returns (Empty) {}
+    rpc JoinChatRoom(JoinRequest) returns (Empty) {}
+}
+
+message Empty {}
+
+message ChatRoomRequest {
+    string chatroomname = 1;
+    string username = 2;
+}
+
+message ChatRoomResponse {
+    string chatroomid = 1;
+}
+
+message ChatMessage {
+    string chatroomid = 1;
+    string name = 2;
+    string message = 3;
+}
+
+message JoinRequest {
+    string chatroomid = 1;
+    string username = 2;
+}
+
